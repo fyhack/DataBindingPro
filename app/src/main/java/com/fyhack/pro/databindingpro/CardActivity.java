@@ -17,8 +17,8 @@ import java.util.List;
 
 /**
  * CardActivity
+ * RecyclerView + CardView 视图demo
  * <p/>
- *
  *
  * @author elc_simayi
  * @since 2015/11/23

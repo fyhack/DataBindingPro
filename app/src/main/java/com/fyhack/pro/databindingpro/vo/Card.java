@@ -6,7 +6,7 @@ import android.databinding.Bindable;
 import com.fyhack.pro.databindingpro.BR;
 
 /**
- * News
+ * Card
  * <p/>
  *
  * @author elc_simayi
