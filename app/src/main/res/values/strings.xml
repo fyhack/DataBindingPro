@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DataBindingPro</string>
+    <string name="activity_main_btn_name">Click</string>
+</resources>
