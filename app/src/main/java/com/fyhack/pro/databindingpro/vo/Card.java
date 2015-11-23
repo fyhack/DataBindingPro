@@ -7,6 +7,7 @@ import com.fyhack.pro.databindingpro.BR;
 
 /**
  * Card
+ * 使用dataBind的pojo
  * <p/>
  *
  * @author elc_simayi
