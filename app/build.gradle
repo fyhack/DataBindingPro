@@ -4,10 +4,9 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
-
     defaultConfig {
         applicationId "com.fyhack.pro.databindingpro"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -18,10 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     //To configure your app to use data binding, add the dataBinding element to your build.gradle file in the app module.
     dataBinding {
         enabled = true
+    }
+    productFlavors {
     }
 }
 
