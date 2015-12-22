@@ -16,9 +16,11 @@ import com.fyhack.pro.databindingpro.BR;
 
 public class Card extends BaseObservable{
     private String name;
+    private String pic_url;
 
-    public Card(String name) {
+    public Card(String name, String pic_url) {
         this.name = name;
+        this.pic_url = pic_url;
     }
 
     @Bindable
@@ -29,6 +31,16 @@ public class Card extends BaseObservable{
     public void setName(String name) {
         this.name = name;
         notifyPropertyChanged(BR.name);
+    }
+
+    @Bindable
+    public String getPic_url() {
+        return pic_url;
+    }
+
+    public void setPic_url(String pic_url) {
+        this.pic_url = pic_url;
+        notifyPropertyChanged(BR.pic_url);
     }
 
 }
