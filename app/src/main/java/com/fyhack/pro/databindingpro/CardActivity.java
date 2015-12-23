@@ -62,12 +62,13 @@ public class CardActivity extends AppCompatActivity {
             public void onItemClick(View view, int position) {
                 switch (view.getId()){
                     case R.id.item_card:
-                        recyclerViewAdapter.removeItem(position);
+                        recyclerViewAdapter.removeItem(position);   //删除
                         break;
                     case R.id.item_footer_card:
-                        recyclerViewAdapter.addRangeItems(position, getCardDatas(10, position+1000));
-//                        recyclerViewAdapter.addItem(position,new Card(""+position,"http://cos.myqcloud.com/1001029/batchmsg_testing/testimg/"+(position+1)+".jpg"));
-//                        recyclerViewAdapter.setItem(position-1,new Card("" + position, "http://cos.myqcloud.com/1001029/batchmsg_testing/testimg/" + (position+1000) + ".jpg"));
+                        recyclerViewAdapter.removeAllItem(new int[]{0,2,3});    //批量删除
+//                        recyclerViewAdapter.addRangeItems(position, getCardDatas(10, position+1000)); //批量添加
+//                        recyclerViewAdapter.addItem(position,new Card(""+position,"http://cos.myqcloud.com/1001029/batchmsg_testing/testimg/"+(position+1)+".jpg"));  //添加
+//                        recyclerViewAdapter.setItem(position-1,new Card("" + position, "http://cos.myqcloud.com/1001029/batchmsg_testing/testimg/" + (position+1000) + ".jpg"));  //变更
                         break;
                 }
             }
@@ -168,11 +169,17 @@ public class CardActivity extends AppCompatActivity {
 
         public Card removeItem(int position){
             Card card = null;
-            if (position > -1){
+            if (position > -1 && position <= getDataCount()-1){
                 card = datas.remove(position);
                 notifyItemRemoved(position);
             }
             return card;
+        }
+
+        public void removeAllItem(int[] position){
+            for(int i=0; i<position.length; i++){
+                removeItem(position[i]-i);
+            }
         }
 
         public void setItem(int position,Card item){
@@ -183,7 +190,7 @@ public class CardActivity extends AppCompatActivity {
         }
 
         public void addRangeItems(int position, List<Card> items){
-            if (position > -1 && position <= getDataCount()){
+            if (position > -1 && position <= getDataCount()) {
                 datas.addAll(position, items);
                 notifyItemRangeInserted(position,items.size());
             }
