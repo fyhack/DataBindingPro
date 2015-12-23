@@ -37,7 +37,6 @@ public class CardActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     RecyclerViewAdapter recyclerViewAdapter;
-    List<Card> datas;
     ImageLoader imageLoader;
 
     @Override
@@ -46,6 +45,10 @@ public class CardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
 
+        init();
+    }
+
+    private void init(){
         recyclerView = (RecyclerView) findViewById(R.id.activity_card_recycler_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         gridLayoutManager.setOrientation(GridLayoutManager.HORIZONTAL);
@@ -53,17 +56,19 @@ public class CardActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemViewCacheSize(8);
 
-        datas = getCardDatas(20);
-        recyclerViewAdapter = new RecyclerViewAdapter(this,datas);
+        recyclerViewAdapter = new RecyclerViewAdapter(this,getCardDatas(20,1));
         recyclerViewAdapter.setOnRecyclerViewItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 switch (view.getId()){
                     case R.id.item_card:
-                        removeItem(position);
+                        recyclerViewAdapter.removeItem(position);
                         break;
                     case R.id.item_footer_card:
-                        addItem(position);
+                        recyclerViewAdapter.addRangeItems(position, getCardDatas(10, position+1000));
+//                        recyclerViewAdapter.addItem(position,new Card(""+position,"http://cos.myqcloud.com/1001029/batchmsg_testing/testimg/"+(position+1)+".jpg"));
+//                        recyclerViewAdapter.setItem(position-1,new Card("" + position, "http://cos.myqcloud.com/1001029/batchmsg_testing/testimg/" + (position+1000) + ".jpg"));
+                        break;
                 }
             }
         });
@@ -75,32 +80,23 @@ public class CardActivity extends AppCompatActivity {
         Fresco.initialize(this);
     }
 
-    private ArrayList<Card> getCardDatas(int count){
+    private ArrayList<Card> getCardDatas(int count,int picStartNum){
         ArrayList<Card> arrayList = new ArrayList<>();
         for(int i=0;i<count;i++){
-            Card card = new Card(""+i,"http://cos.myqcloud.com/1001029/batchmsg_testing/testimg/"+(i+1)+".jpg");
+            Card card = new Card(""+(picStartNum+i),"http://cos.myqcloud.com/1001029/batchmsg_testing/testimg/"+(i+picStartNum)+".jpg");
             arrayList.add(card);
         }
         return arrayList;
     }
 
-    private void addItem(int position){
-        datas.add(position,new Card(""+position,"http://cos.myqcloud.com/1001029/batchmsg_testing/testimg/"+(position+1)+".jpg"));
-        recyclerViewAdapter.notifyItemInserted(position);
-}
-
-    private void removeItem(int position){
-        datas.remove(position);
-        recyclerViewAdapter.notifyItemRemoved(position);
-    }
-
     public class RecyclerViewAdapter extends RecyclerView.Adapter{
+        private static final int TYPE_NORMAL = 0;
+        private static final int TYPE_FOOTER = 1;
+        private static final int FOOTER_NUM = 1;
+
         private Context context;
         private List<Card> datas;
         private OnRecyclerViewItemClickListener onRecyclerViewItemClickListener;
-
-        private static final int TYPE_NORMAL = 0;
-        private static final int TYPE_FOOTER = 1;
 
         public RecyclerViewAdapter(Context context,List datas){
             this.context = context;
@@ -119,7 +115,7 @@ public class CardActivity extends AppCompatActivity {
             if(TYPE_NORMAL == viewType){
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card,parent,false);
                 NormalViewHolder viewHolder = new NormalViewHolder(view);
-                Log.i("onCreateViewHolder","NormalViewHolder");
+                Log.i("onCreateViewHolder", "NormalViewHolder");
                 return viewHolder;
             }else{
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_footer_card,parent,false);
@@ -133,18 +129,6 @@ public class CardActivity extends AppCompatActivity {
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             if (getItemViewType(position) == TYPE_NORMAL){
                 ((NormalViewHolder)holder).textView.setText(datas.get(position).getName());
-//            switch (position%3){
-//                case 0:
-//                    ((ViewHolder)holder).imageView.setImageResource(R.drawable.rect);
-//                    break;
-//                case 1:
-//                    ((ViewHolder)holder).imageView.setImageResource(R.drawable.rect1);
-//                    break;
-//                case 2:
-//                    ((ViewHolder)holder).imageView.setImageResource(R.drawable.rect2);
-//                    break;
-//            }
-
                 /**
                  * 采用universalimageloader加载图片测试OOM
                  */
@@ -153,22 +137,65 @@ public class CardActivity extends AppCompatActivity {
                         .cacheOnDisk(true)  //磁盘缓存
                         .build();
                 imageLoader.displayImage(datas.get(position).getPic_url(),
-                        ((NormalViewHolder)holder).simpleDraweeView,options);
+                        ((NormalViewHolder) holder).simpleDraweeView, options);
 
                 /**
                  * 采用Fresco加载图片测试OOM
                  */
-            /*Uri uri = Uri.parse(datas.get(position).getPic_url());
-            ((ViewHolder)holder).simpleDraweeView.setImageURI(uri);*/
+                /*Uri uri = Uri.parse(datas.get(position).getPic_url());
+                ((NormalViewHolder)holder).simpleDraweeView.setImageURI(uri);*/
             }else if(getItemViewType(position) == TYPE_FOOTER){
                 ((FooterViewHolder)holder).textView.setText("Footer");
+                ((FooterViewHolder)holder).imageView.setImageResource(R.drawable.plus);
             }
         }
 
         @Override
         public int getItemCount() {
-            //TODO
-            return datas.size()+1;
+            return getDataCount() + FOOTER_NUM;
+        }
+
+        public int getDataCount() {
+            return datas.size();
+        }
+
+        public void addItem(int position,Card item){
+            if (position > -1 && position <= getDataCount()){
+                datas.add(position,item);
+                notifyItemInserted(position);
+            }
+        }
+
+        public Card removeItem(int position){
+            Card card = null;
+            if (position > -1){
+                card = datas.remove(position);
+                notifyItemRemoved(position);
+            }
+            return card;
+        }
+
+        public void setItem(int position,Card item){
+            if (position > -1 && position <= getDataCount()-1){
+                datas.set(position,item);
+                notifyItemChanged(position);
+            }
+        }
+
+        public void addRangeItems(int position, List<Card> items){
+            if (position > -1 && position <= getDataCount()){
+                datas.addAll(position, items);
+                notifyItemRangeInserted(position,items.size());
+            }
+        }
+
+        public List<Card> getDatas() {
+            return datas;
+        }
+
+        public void setDatas(List<Card> datas) {
+            this.datas = datas;
+            notifyDataSetChanged();
         }
 
         public class NormalViewHolder extends RecyclerView.ViewHolder{
@@ -208,6 +235,7 @@ public class CardActivity extends AppCompatActivity {
         public void setOnRecyclerViewItemClickListener(OnRecyclerViewItemClickListener onRecyclerViewItemClickListener) {
             this.onRecyclerViewItemClickListener = onRecyclerViewItemClickListener;
         }
+
     }
 
     public interface OnRecyclerViewItemClickListener{
