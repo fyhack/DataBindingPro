@@ -21,6 +21,7 @@ import java.util.List;
 /**
  * CardRecyclerViewAdapter
  * <p/>
+ * 适配器
  *
  * @author elc_simayi
  * @since 2015/12/23
