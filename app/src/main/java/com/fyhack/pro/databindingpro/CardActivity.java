@@ -53,9 +53,9 @@ public class CardActivity extends AppCompatActivity {
                         recyclerViewAdapter.removeItem(position);   //删除
                         break;
                     case R.id.item_footer_card:
-                        recyclerViewAdapter.removeAllItem(new int[]{0, 2, 3});    //批量删除
+//                        recyclerViewAdapter.removeAllItem(new int[]{0, 2, 3});    //批量删除
 //                        recyclerViewAdapter.addRangeItems(position, getCardDatas(10, position+1000)); //批量添加
-//                        recyclerViewAdapter.addItem(position,new Card(""+position,"http://cos.myqcloud.com/1001029/batchmsg_testing/testimg/"+(position+1)+".jpg"));  //添加
+                        recyclerViewAdapter.addItem(position,new Card(""+position,"http://cos.myqcloud.com/1001029/batchmsg_testing/testimg/"+(position+1)+".jpg"));  //添加
 //                        recyclerViewAdapter.setItem(position-1,new Card("" + position, "http://cos.myqcloud.com/1001029/batchmsg_testing/testimg/" + (position+1000) + ".jpg"));  //变更
                         break;
                 }

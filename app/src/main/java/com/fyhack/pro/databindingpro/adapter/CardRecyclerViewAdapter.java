@@ -47,7 +47,7 @@ public class CardRecyclerViewAdapter extends RecyclerViewAdapter<Card> {
 
     @Override
     public RecyclerView.ViewHolder onCreateFooterViewHolderHandle(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_footer_card,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_footer_card, parent, false);
         FooterViewHolder viewHolder = new FooterViewHolder(view);
         return viewHolder;
     }
@@ -69,8 +69,8 @@ public class CardRecyclerViewAdapter extends RecyclerViewAdapter<Card> {
         /**
          * 采用Fresco加载图片测试OOM
          */
-                /*Uri uri = Uri.parse(datas.get(position).getPic_url());
-                ((NormalViewHolder)holder).simpleDraweeView.setImageURI(uri);*/
+        /*Uri uri = Uri.parse(getDatas().get(position).getPic_url());
+        ((NormalViewHolder)holder).simpleDraweeView.setImageURI(uri);*/
     }
 
     @Override
