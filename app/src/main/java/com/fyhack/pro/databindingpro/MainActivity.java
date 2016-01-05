@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        card = new Card(" " + System.currentTimeMillis());
+        card = new Card(" " + System.currentTimeMillis(),"");
         binding.setCard(card);
     }
 

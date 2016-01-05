@@ -1,21 +1,13 @@
 package com.fyhack.pro.databindingpro;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.fyhack.pro.databindingpro.vo.Card;
+import android.view.WindowManager;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * CardActivity
@@ -29,49 +21,59 @@ import java.util.List;
 public class CardActivity extends AppCompatActivity {
     private final String TAG = "CardActivity";
     private RecyclerView recyclerView;
+    CardRecyclerViewAdapter recyclerViewAdapter;
 
     RecyclerViewAdapter recyclerViewAdapter;
-    List<Card> datas;
+    List datas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
 
+        init();
+    }
+
+    private void init(){
         recyclerView = (RecyclerView) findViewById(R.id.activity_card_recycler_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         gridLayoutManager.setOrientation(GridLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setItemViewCacheSize(8);
 
-        datas = getCardDatas(20);
-        recyclerViewAdapter = new RecyclerViewAdapter(this,datas);
+        recyclerViewAdapter = new CardRecyclerViewAdapter(this,getCardDatas(20,1));
         recyclerViewAdapter.setOnRecyclerViewItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Log.i(TAG, "onItemClick " + position);
-                if(position%2 == 0)
-                    removeItem(position);
-                else
-                    addItem(position);
-
+                switch (view.getId()) {
+                    case R.id.item_card:
+                        recyclerViewAdapter.removeItem(position);   //删除
+                        break;
+                    case R.id.item_footer_card:
+                        recyclerViewAdapter.removeAllItem(new int[]{0, 2, 3});    //批量删除
+//                        recyclerViewAdapter.addRangeItems(position, getCardDatas(10, position+1000)); //批量添加
+//                        recyclerViewAdapter.addItem(position,new Card(""+position,"http://cos.myqcloud.com/1001029/batchmsg_testing/testimg/"+(position+1)+".jpg"));  //添加
+//                        recyclerViewAdapter.setItem(position-1,new Card("" + position, "http://cos.myqcloud.com/1001029/batchmsg_testing/testimg/" + (position+1000) + ".jpg"));  //变更
+                        break;
+                }
             }
         });
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
-    private ArrayList<Card> getCardDatas(int count){
-        ArrayList<Card> arrayList = new ArrayList<Card>();
+    private ArrayList<String> getCardDatas(int count){
+        ArrayList<String> arrayList = new ArrayList<String>();
 
         for(int i=0;i<count;i++){
-            arrayList.add(new Card(""+i));
+            arrayList.add(""+i);
         }
-
         return arrayList;
     }
 
     private void addItem(int position){
-        datas.add(position,new Card(""+position));
+        datas.add(position,""+position);
         recyclerViewAdapter.notifyItemInserted(position);
     }
 
@@ -82,10 +84,10 @@ public class CardActivity extends AppCompatActivity {
 
     public class RecyclerViewAdapter extends RecyclerView.Adapter{
         private Context context;
-        private List<Card> datas;
+        private List datas;
         private OnRecyclerViewItemClickListener onRecyclerViewItemClickListener;
 
-        public RecyclerViewAdapter(Context context,List<Card> datas){
+        public RecyclerViewAdapter(Context context,List datas){
             this.context = context;
             this.datas = datas;
         }
@@ -99,7 +101,7 @@ public class CardActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            ((ViewHolder)holder).textView.setText(datas.get(position).getName());
+            ((ViewHolder)holder).textView.setText((String)datas.get(position));
             ((ViewHolder)holder).imageView.setImageResource(R.drawable.rect2);
         }
 

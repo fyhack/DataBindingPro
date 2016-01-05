@@ -4,7 +4,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
-
     defaultConfig {
         applicationId "com.fyhack.pro.databindingpro"
         minSdkVersion 19
@@ -18,10 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     //To configure your app to use data binding, add the dataBinding element to your build.gradle file in the app module.
     dataBinding {
         enabled = true
+    }
+    productFlavors {
     }
 }
 
@@ -31,4 +31,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.android.support:cardview-v7:23.1.1'
     compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.facebook.fresco:fresco:0.8.0+'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 }

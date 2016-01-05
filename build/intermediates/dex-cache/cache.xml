@@ -2,6 +2,20 @@
 <items version="2" >
 
     <item
+        jar="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/exploded-aar/com.android.databinding/library/1.0-rc3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="acaeec786da68e5cfc30134c36cb5645a8a0c6ba">
+        <dex dex="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/pre-dexed/debug/com.android.databinding-library-1.0-rc3_7b776c1a334dc3de79b10385bce919e62310137a.jar" />
+    </item>
+    <item
+        jar="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_3b3c98325da009d83083ff4fa4ec3abc7af7405f.jar" />
+    </item>
+    <item
         jar="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/exploded-aar/com.android.databinding/adapters/1.0-rc3/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
@@ -9,11 +23,11 @@
         <dex dex="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/pre-dexed/debug/com.android.databinding-adapters-1.0-rc3_4d9a09bc5d6862814cff15403aef29818d592bc9.jar" />
     </item>
     <item
-        jar="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jar="/Users/fyhack/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_f64820a230a3f198589acd1066cb8710a076e82b.jar" />
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_e2f2556ad356301f159b221d05d3d42f4b0e28eb.jar" />
     </item>
     <item
         jar="/Users/fyhack/.gradle/caches/modules-2/files-2.1/com.android.databinding/baseLibrary/1.0-rc5/4d15bfec5956b906a26527dbde26a4fc84326611/baseLibrary-1.0-rc5.jar"
@@ -30,32 +44,11 @@
         <dex dex="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-23.1.1_f565a6cda4fd0237b2e8ef923a06ec78cb7af2f7.jar" />
     </item>
     <item
-        jar="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/exploded-aar/com.android.databinding/library/1.0-rc3/jars/classes.jar"
+        jar="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="acaeec786da68e5cfc30134c36cb5645a8a0c6ba">
-        <dex dex="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/pre-dexed/debug/com.android.databinding-library-1.0-rc3_7b776c1a334dc3de79b10385bce919e62310137a.jar" />
-    </item>
-    <item
-        jar="/Users/fyhack/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_e2f2556ad356301f159b221d05d3d42f4b0e28eb.jar" />
-    </item>
-    <item
-        jar="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
-        <dex dex="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.0_a6d1210fcc55464a6888b892a58d4b071f40ffba.jar" />
-    </item>
-    <item
-        jar="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_3b3c98325da009d83083ff4fa4ec3abc7af7405f.jar" />
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_f64820a230a3f198589acd1066cb8710a076e82b.jar" />
     </item>
     <item
         jar="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
@@ -63,6 +56,13 @@
         revision="23.0.1"
         sha1="09c5e804bc67fc0580360043dff067df574a60d4">
         <dex dex="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.1.1_1f98ba77af562679ab031d1ac147acdbb69a4ad8.jar" />
+    </item>
+    <item
+        jar="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="/Users/fyhack/AndroidStudioProjects/DataBindingPro/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.0_a6d1210fcc55464a6888b892a58d4b071f40ffba.jar" />
     </item>
 
 </items>
