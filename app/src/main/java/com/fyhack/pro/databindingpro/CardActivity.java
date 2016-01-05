@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fyhack.pro.databindingpro.vo.Card;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class CardActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     RecyclerViewAdapter recyclerViewAdapter;
-    List datas;
+    List<Card> datas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,18 +60,18 @@ public class CardActivity extends AppCompatActivity {
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
-    private ArrayList<String> getCardDatas(int count){
-        ArrayList<String> arrayList = new ArrayList<String>();
+    private ArrayList<Card> getCardDatas(int count){
+        ArrayList<Card> arrayList = new ArrayList<Card>();
 
         for(int i=0;i<count;i++){
-            arrayList.add(""+i);
+            arrayList.add(new Card(""+i));
         }
 
         return arrayList;
     }
 
     private void addItem(int position){
-        datas.add(position,""+position);
+        datas.add(position,new Card(""+position));
         recyclerViewAdapter.notifyItemInserted(position);
     }
 
@@ -80,10 +82,10 @@ public class CardActivity extends AppCompatActivity {
 
     public class RecyclerViewAdapter extends RecyclerView.Adapter{
         private Context context;
-        private List datas;
+        private List<Card> datas;
         private OnRecyclerViewItemClickListener onRecyclerViewItemClickListener;
 
-        public RecyclerViewAdapter(Context context,List datas){
+        public RecyclerViewAdapter(Context context,List<Card> datas){
             this.context = context;
             this.datas = datas;
         }
@@ -97,7 +99,7 @@ public class CardActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            ((ViewHolder)holder).textView.setText((String)datas.get(position));
+            ((ViewHolder)holder).textView.setText(datas.get(position).getName());
             ((ViewHolder)holder).imageView.setImageResource(R.drawable.rect2);
         }
 
