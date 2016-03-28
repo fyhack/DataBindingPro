@@ -52,7 +52,7 @@ public class CardActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemViewCacheSize(8);
 
-        recyclerViewAdapter = new CardRecyclerViewAdapter(this,getCardDatas(20,2000));
+        recyclerViewAdapter = new CardRecyclerViewAdapter(this,getCardDatas(20,1));
         recyclerViewAdapter.setOnRecyclerViewItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
