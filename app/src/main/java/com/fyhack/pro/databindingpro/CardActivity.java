@@ -33,6 +33,14 @@ public class CardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
 
+//        try {
+//            ApplicationInfo applicationInfo = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+//            StatConfig.setDebugEnable(applicationInfo.metaData.getBoolean("isDebug"));
+//        } catch (PackageManager.NameNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        StatService.trackCustomEvent(this,"onCreate",">onCreate...");
+
         init();
     }
 
@@ -44,7 +52,7 @@ public class CardActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemViewCacheSize(8);
 
-        recyclerViewAdapter = new CardRecyclerViewAdapter(this,getCardDatas(20,1));
+        recyclerViewAdapter = new CardRecyclerViewAdapter(this,getCardDatas(20,2000));
         recyclerViewAdapter.setOnRecyclerViewItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {

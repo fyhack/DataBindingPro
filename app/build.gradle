@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
     compileSdkVersion 23
@@ -26,8 +26,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':OneSDK')  //阿里云推送，阿里移动统计
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.android.support:cardview-v7:23.1.1'
     compile 'com.android.support:recyclerview-v7:23.1.1'
